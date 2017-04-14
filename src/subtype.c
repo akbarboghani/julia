@@ -2494,7 +2494,8 @@ static int type_morespecific_(jl_value_t *a, jl_value_t *b, int invariant, jl_ty
                 return 1;
         }
         else {
-            if (jl_isa(tp0a, b) || (tp0a == jl_bottom_type && jl_subtype(b, (jl_value_t*)jl_type_type)))
+            if (jl_isa(jl_unwrap_unionall(tp0a), b) ||
+                (tp0a == jl_bottom_type && jl_subtype(b, (jl_value_t*)jl_type_type)))
                 return 1;
         }
     }
